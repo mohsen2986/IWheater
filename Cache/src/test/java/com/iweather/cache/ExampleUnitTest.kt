@@ -1,4 +1,4 @@
-package com.mobile_ui
+package com.iweather.cache
 
 import org.junit.Test
 

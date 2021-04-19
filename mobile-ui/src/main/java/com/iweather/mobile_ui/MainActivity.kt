@@ -1,4 +1,4 @@
-package com.mobile_ui
+package com.iweather.mobile_ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
