@@ -26,7 +26,7 @@ class WeatherViewModel constructor(
     fun showWeather(placeName: String) = viewModelScope.launch {
         showLoading()
 
-        weatherUseCase(placeName).collect { value: Result<Weather> ->
+        weatherUseCase(placeName).collect { value: DataHolder<Weather> ->
             when(value) {
                 is Success -> {
                     val weatherData = mapper.mapToView(value.data)
