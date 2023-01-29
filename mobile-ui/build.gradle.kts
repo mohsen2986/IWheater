@@ -5,8 +5,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion (30)
-    buildToolsVersion (AndroidSdk.buildToolsVersion)
+    compileSdkVersion (33)
 
     defaultConfig {
         applicationId = Config.applicationId
@@ -38,6 +37,14 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
+
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.3.2"
+//        kotlinCompilerVersion = "1.1.0"
+    }
 }
 
 dependencies {
@@ -65,5 +72,10 @@ dependencies {
     // NETWORK MONITORING
     implementation ("com.facebook.stetho:stetho:1.5.1")
     implementation ("com.facebook.stetho:stetho-okhttp3:1.5.1")
+
+    // Compose
+    implementation ("androidx.compose.ui:ui:1.3.3")
+    implementation ("androidx.compose.material:material:1.3.1")
+    implementation ("androidx.compose.ui:ui-tooling-preview:1.3.3")
 
 }
