@@ -11,8 +11,6 @@ android {
     defaultConfig {
         minSdkVersion (AndroidSdk.min)
         targetSdkVersion (AndroidSdk.target)
-        versionCode = Config.versionCode
-        versionName = Config.versionName
 
         testInstrumentationRunner = MobileUITestDependencies.AndroidJunitRunner
     }
@@ -51,9 +49,9 @@ android {
         implementation(PresentationDependencies.retrofit)
         implementation(PresentationDependencies.retrofitConverter)
 
+        implementation(PresentationDependencies.viewModel)
         implementation(PresentationDependencies.viewModelKtx)
         implementation(PresentationDependencies.lifecycleExt)
-        implementation(PresentationDependencies.lifecycleKtx)
         kapt(PresentationDependencies.lifecycleCompiler)
 
 }

@@ -1,4 +1,4 @@
-const val kotlinVersion = "1.3.71"
+const val kotlinVersion = "1.7.20"
 const val coroutineVersion = "1.0.1"
 
 object Config{
@@ -28,10 +28,9 @@ object BuildPlugins {
 
 
 object AndroidSdk {
-    const val min = 19
+    const val min = 21
     const val compile = 30
     const val target = compile
-    const val buildToolsVersion = "29.0.3"
 }
 
 object MobileUIDependencies{
@@ -103,7 +102,8 @@ object PresentationDependencies{
         const val coroutine = "1.3.3"
         const val okhttpVersion = "3.12.0"
         const val retrofitVersion = "2.4.0"
-        const val lifecycle = "2.2.0"
+        const val lifecycle = "2.5.1"
+        const val lifecycle2 = "2.2.0"
     }
 
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
@@ -117,10 +117,10 @@ object PresentationDependencies{
     const val retrofit          = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
     const val retrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitVersion}"
 
+    val viewModel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.lifecycle}"
     val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-    val lifecycleExt = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
-    val lifecycleKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
-    val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
+    val lifecycleExt = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle2}"
+    val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle2}"
 
 }
 
@@ -128,7 +128,8 @@ object CacheDependencies{
     private object Versions{
         const val kodein = "6.5.5"
         const val coroutine = "1.3.3"
-        const val lifecycle = "2.2.0"
+        const val lifecycle = "2.5.1"
+        const val lifecycle2 = "2.2.0"
         const val room = "2.3.0-alpha03"
         const val androidXAppCompat = "1.1.0-alpha01"
     }
@@ -144,10 +145,10 @@ object CacheDependencies{
     const val appCompat         = "androidx.appcompat:appcompat:${Versions.androidXAppCompat}"
 
 
+    val viewModel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.lifecycle}"
     val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
-    val lifecycleExt = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
-    val lifecycleKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
-    val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
+    val lifecycleExt = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle2}"
+    val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle2}"
 
 }
 
