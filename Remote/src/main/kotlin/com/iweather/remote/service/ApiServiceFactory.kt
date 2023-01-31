@@ -13,7 +13,7 @@ object ApiServiceFactory{
     }
     private fun createRetrofitService(okHttpClient: OkHttpClient): ApiInterface {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.openweathermap.org/data/2.5/")
+            .baseUrl("https://api.openweathermap.org/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

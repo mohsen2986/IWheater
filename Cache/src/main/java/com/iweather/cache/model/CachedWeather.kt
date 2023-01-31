@@ -1,8 +1,12 @@
 package com.iweather.cache.model
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.iweather.cache.db.WeatherConstants
 
-@Entity(tableName = "cached_weather")
+@Entity(tableName = WeatherConstants.TABLE_NAME)
 data class CachedWeather(
-    val temp: Double
+    val temp: Double ,
+    @PrimaryKey(autoGenerate = false)
+    val id: Int =1
 )
