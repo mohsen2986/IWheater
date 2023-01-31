@@ -15,7 +15,7 @@ abstract class CachedWeatherDao {
     abstract fun getWeather(): Flow<List<CachedWeather>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun upsetWeather(weather: CachedWeather): Flow<CachedWeather>
+    abstract suspend fun upsetWeather(weather: CachedWeather): Long
 
     @Query(WeatherConstants.QUERY_EXISTS)
     abstract fun lastUpdateExist(): Flow<Boolean>

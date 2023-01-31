@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 abstract class DatabaseStatusDao{
 
     @Query(DatabaseStatusConstants.QUERY_STATUS)
-    abstract fun getStatus(): Flow<DatabaseStatus>
+    abstract fun getStatus(): Flow<DatabaseStatus?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun upsetStatus(databaseStatus: DatabaseStatus)

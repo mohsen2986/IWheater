@@ -1,5 +1,6 @@
 package com.iweather.presentation
 
+import com.iweather.presentation.mapper.CityMapper
 import com.iweather.presentation.mapper.WeatherMapper
 import com.iweather.presentation.viewModel.WeatherViewModelFactory
 import org.kodein.di.Kodein
@@ -11,6 +12,7 @@ import org.kodein.di.generic.singleton
 val presentationModule = Kodein.Module(name = "PresentationModule"){
 
     bind() from singleton { WeatherMapper() }
-    bind() from provider { WeatherViewModelFactory(instance() , instance()) }
+    bind() from singleton { CityMapper() }
+    bind() from provider { WeatherViewModelFactory(instance() , instance(), instance()) }
 
 }

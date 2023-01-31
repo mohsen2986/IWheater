@@ -6,7 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.compose.foundation.layout.Box
+import androidx.compose.material.TextField
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.iweather.mobile_ui.databinding.FragmentWeatherBinding
 import com.iweather.presentation.viewModel.WeatherViewModel
@@ -23,35 +35,51 @@ class WeatherFragment : Fragment() , KodeinAware{
 
     private lateinit var viewModel: WeatherViewModel
 
-    private lateinit var binding : FragmentWeatherBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentWeatherBinding.inflate(inflater , container , false)
-        return binding.root
-    }
+    ): View = applyCompose()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this , viewModelFactory).get(WeatherViewModel::class.java)
-        Toast.makeText(context , ":)" , Toast.LENGTH_SHORT).show()
-        viewModel.showWeather("")
-        viewModel.viewState.observe(viewLifecycleOwner, Observer { state ->
-
-            if (state.error != null) {
-                // TODO: Enable reload here
-//                Snackbar.make(binding.root, R.string.something_went_wrong, Snackbar.LENGTH_SHORT)
-//                    .show()
-                Toast.makeText(context , "fail" , Toast.LENGTH_SHORT).show()
-            } else if (state.data != null) {
-                Toast.makeText(context , "${state.data}" , Toast.LENGTH_SHORT).show()
-                binding.tvCityName.text = state?.data?.tempData?.degrees.toString()
-            }
-        })
+//        viewModel.showWeather("")
+//        viewModel.viewState.observe(viewLifecycleOwner, Observer { state ->
+//
+//            if (state.error != null) {
+//                // TODO: Enable reload here
+////                Snackbar.make(binding.root, R.string.something_went_wrong, Snackbar.LENGTH_SHORT)
+////                    .show()
+//            } else if (state.data != null) {
+//                Toast.makeText(context , "${state.data}" , Toast.LENGTH_SHORT).show()
+////                binding.tvCityName.text = state?.data?.tempData?.degrees.toString()
+//            }
+//        })
     }
+    private fun applyCompose() =
+        ComposeView(requireContext()).apply {
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            setContent {
+                WeatherScreen(viewModel)
+            }
+        }
 
 
+}
+
+
+@Composable
+fun WeatherScreen(viewModel: WeatherViewModel){
+    Box {
+        val searchText by viewModel.searchText.collectAsState()
+
+        TextField(
+            value = searchText,
+            onValueChange = {
+                viewModel.searchCity(it)
+            }
+        )
+    }
 }
