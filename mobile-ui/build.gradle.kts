@@ -2,6 +2,7 @@ plugins {
     id (BuildPlugins.androidApplication)
     id (BuildPlugins.kotlinAndroid)
     id (BuildPlugins.kotlinKapt)
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
@@ -77,6 +78,8 @@ dependencies {
     implementation ("androidx.compose.ui:ui:1.3.3")
     implementation ("androidx.compose.material:material:1.3.1")
     implementation ("androidx.compose.ui:ui-tooling-preview:1.3.3")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
     debugImplementation("androidx.compose.ui:ui-tooling:1.3.3")
 
 }
