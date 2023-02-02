@@ -15,7 +15,6 @@ import kotlinx.coroutines.flow.map
 
 class CityRepositoryImpl (
     private val mapper: EntityMapper<CityEntity, City>,
-    private val cache: WeatherCache,
     private val factory: CityDataSourceFactory
 ): CityRepository{
     override suspend fun searchCity(name: String): Flow<DataHolder<List<City>>> {

@@ -20,5 +20,5 @@ val dataModule = Kodein.Module(name = "DataModule") {
     bind() from singleton { CityDataSourceFactory(instance() , instance()) }
 
     bind<WeatherRepository>() with provider {  WeatherDataRepository(instance() , instance() , instance() ) }
-    bind<CityRepository>() with provider {  CityRepositoryImpl(instance() , instance() , instance() ) }
+    bind<CityRepository>() with provider {  CityRepositoryImpl(instance() , instance() ) }
 }
