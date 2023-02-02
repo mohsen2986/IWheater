@@ -6,6 +6,9 @@ class CityDataSourceFactory(
     private val cityCacheDataSource: CityCacheDataSource ,
     private val cityRemoteDataSource: CityRemoteDataSource
 ) {
+    fun getCacheDataSource(): CityCacheDataSource =
+        cityCacheDataSource
+
     fun getRemoteDataSource(): CityDataSource =
         cityRemoteDataSource
 }

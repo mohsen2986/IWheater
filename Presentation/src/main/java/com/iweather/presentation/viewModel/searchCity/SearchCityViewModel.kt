@@ -7,6 +7,8 @@ import com.akoufatzis.coolweather.core.Event
 import com.iweather.domain.base.Failure
 import com.iweather.domain.base.Loading
 import com.iweather.domain.base.Success
+import com.iweather.domain.models.City
+import com.iweather.domain.usecases.AddCityToListUseCase
 import com.iweather.domain.usecases.SearchCityUseCase
 import com.iweather.presentation.mapper.CityMapper
 import com.iweather.presentation.model.CityView
@@ -21,6 +23,7 @@ import kotlinx.coroutines.launch
 
 class SearchCityViewModel(
     val searchCityUseCase: SearchCityUseCase,
+    val addCityToListUseCase: AddCityToListUseCase,
     private val mapper: CityMapper,
 ) : ViewModel() {
 
@@ -52,7 +55,6 @@ class SearchCityViewModel(
                                 }
                             }
                             is Success -> {
-                                Log.d("mohsen_" , "the response is $it")
                                 _viewState.update {
                                     it.copy(
                                         data = value.data.map { mapper.mapToView(it) }
@@ -69,6 +71,12 @@ class SearchCityViewModel(
                         }
                     }
                 }
+        }
+    }
+
+    fun addToList(cityName: String){
+        viewModelScope.launch {
+            addCityToListUseCase(City(cityName , "" , ""))
         }
     }
 }

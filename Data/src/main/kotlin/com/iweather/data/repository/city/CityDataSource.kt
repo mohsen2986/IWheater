@@ -6,4 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface CityDataSource{
     suspend fun searchCityByName(name: String): Flow<DataHolder<List<CityEntity>>>
+
+    suspend fun saveCity(city: CityEntity)
 }

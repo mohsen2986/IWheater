@@ -6,4 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface CityRepository {
     suspend fun searchCity(name: String): Flow<DataHolder<List<City>>>
+
+    suspend fun addCityToList(city: City)
 }

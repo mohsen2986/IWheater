@@ -11,4 +11,8 @@ class CityRemoteDataSource(
 ): CityDataSource {
     override suspend fun searchCityByName(name: String): Flow<DataHolder<List<CityEntity>>> =
         cityRemote.searchCityByName(name)
+
+    override suspend fun saveCity(city: CityEntity) {
+        throw UnsupportedOperationException("saveCity isn't supported here...")
+    }
 }

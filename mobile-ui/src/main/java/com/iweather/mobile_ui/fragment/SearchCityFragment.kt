@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -143,7 +144,14 @@ fun SearchCityScreen(viewModel: SearchCityViewModel) {
                 items = uiState.data
             ){ item ->
                 Box {
-                    SearchItem(city = item.name , state = item.state, country = item.country)
+                    SearchItem(
+                        city = item.name,
+                        state = item.state,
+                        country = item.country ,
+                        addItemToList = { cityName ->
+                            viewModel.addToList(cityName)
+                        }
+                    )
                 }
             }
         }
@@ -151,9 +159,18 @@ fun SearchCityScreen(viewModel: SearchCityViewModel) {
 }
 
 @Composable
-fun SearchItem(city: String, country: String , state: String){
+fun SearchItem(
+    city: String,
+    country: String,
+    state: String,
+    addItemToList: (cityName: String)-> Unit
+){
     Box(
-        modifier = Modifier.fillMaxWidth().height(69.dp).padding(10.dp)
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(69.dp)
+            .padding(10.dp)
+
     ) {
         Text(
             modifier = Modifier.align(Alignment.TopStart) ,
@@ -168,7 +185,11 @@ fun SearchItem(city: String, country: String , state: String){
             color = Color(0x99EBEBF5)
         )
         Icon(
-            modifier = Modifier.align(Alignment.CenterEnd),
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+                .clickable {
+                    addItemToList(city)
+                },
             imageVector = Icons.Filled.Add,
             tint = Color.White,
             contentDescription = "Add city"
