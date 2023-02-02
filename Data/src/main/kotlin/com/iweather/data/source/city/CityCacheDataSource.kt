@@ -12,4 +12,8 @@ class CityCacheDataSource(
     override suspend fun searchCityByName(name: String): Flow<DataHolder<List<CityEntity>>> {
         throw UnsupportedOperationException("searchCity isn't supported here...")
     }
+
+    override suspend fun saveCity(city: CityEntity) {
+        cityCache.saveCity(city)
+    }
 }

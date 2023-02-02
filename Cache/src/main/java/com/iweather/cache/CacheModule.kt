@@ -1,6 +1,7 @@
 package com.iweather.cache
 
 import com.iweather.cache.db.WeatherDatabase
+import com.iweather.cache.mapper.CachedCityMapper
 import com.iweather.cache.mapper.CachedWeatherMapper
 import com.iweather.data.repository.city.CityCache
 import com.iweather.data.repository.weather.WeatherCache
@@ -13,10 +14,12 @@ import org.kodein.di.generic.singleton
 
 val cacheModule = Kodein.Module(name = "CacheModule") {
     bind() from singleton { CachedWeatherMapper() }
+    bind() from singleton { CachedCityMapper() }
+
     bind() from singleton { WeatherDatabase.getInstance(instance())}    /// get room instance
 
     bind<WeatherCache>() with singleton { WeatherCacheRepositoryImpl(instance() , instance()) }
-    bind<CityCache>() with singleton { CityCacheRepositoryImpl() }
+    bind<CityCache>() with singleton { CityCacheRepositoryImpl(instance() , instance()) }
 
     bind() from singleton { WeatherCacheDataSource(instance()) }
     bind() from singleton { CityCacheDataSource(instance()) }

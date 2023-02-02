@@ -10,8 +10,10 @@ import com.iweather.domain.base.Success
 import com.iweather.domain.base.map
 import com.iweather.domain.models.City
 import com.iweather.domain.repositories.CityRepository
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 
 class CityRepositoryImpl (
     private val mapper: EntityMapper<CityEntity, City>,
@@ -24,6 +26,12 @@ class CityRepositoryImpl (
                     mapper.mapFromEntity(it)
                 }
             }
+        }
+    }
+
+    override suspend fun addCityToList(city: City) {
+        withContext(IO){
+            factory.getCacheDataSource().saveCity(city = mapper.mapToEntity(city))
         }
     }
 }

@@ -16,6 +16,6 @@ val presentationModule = Kodein.Module(name = "PresentationModule"){
     bind() from singleton { CityMapper() }
 
     bind() from provider { WeatherViewModelFactory(instance() , instance()) }
-    bind() from provider { SearchCityViewModelFactory(instance(), instance()) }
+    bind() from provider { SearchCityViewModelFactory(instance(), instance() , instance()) }
 
 }
